@@ -30,8 +30,8 @@ next-version: _setup-versions
 	@echo $(NEXT_VERSION)
 
 _docker-build: _setup-versions
-	docker build -t $(IMAGE_NAME):latest  .
-	docker build -t $(IMAGE_NAME):$(CURRENT_VERSION) .
+	docker build -t $(IMAGE_NAME) -f Dockerfile.$(IMAGE_SOURCE_TYPE)  .
+	docker build -t $(IMAGE_NAME):$(CURRENT_VERSION) -f Dockerfile.$(IMAGE_SOURCE_TYPE) .
 	$(call  git_push,Post Release Updating auto generated stuff - version: $(CURRENT_VERSION))
 
 _docker-push: _setup-versions
