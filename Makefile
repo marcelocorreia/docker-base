@@ -7,7 +7,6 @@ REPO_NAME := docker-$(NAME)
 IMAGE_SOURCE_TYPE ?= alpine
 REPO_URL := git@github.com:$(GITHUB_USER)/$(REPO_NAME).git
 
-
 GIT_BRANCH ?= master
 GIT_REMOTE ?= origin
 RELEASE_TYPE ?= patch
@@ -39,7 +38,7 @@ _docker-push: _setup-versions
 	docker push $(IMAGE_NAME):$(CURRENT_VERSION)
 
 _release: _setup-versions ;$(call  git_push,Releasing $(NEXT_VERSION)) ;$(info $(M) Releasing version $(NEXT_VERSION)...)## Release by adding a new tag. RELEASE_TYPE is 'patch' by default, and can be set to 'minor' or 'major'.
-	github-release release -u marcelocorreia -r $(REPO_NAME) --tag $(NEXT_VERSION) --name $(NEXT_VERSION) --description "Collection of cows for old good cowsay"
+	github-release release -u marcelocorreia -r $(REPO_NAME) --tag $(NEXT_VERSION) --name $(NEXT_VERSION)"
 	$(MAKE) _docker-build
 	$(MAKE) _docker-push
 
