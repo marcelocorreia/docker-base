@@ -4,7 +4,7 @@ GITHUB_USER := marcelocorreia
 DOCKER_NAMESPACE := marcelocorreia
 IMAGE_NAME := $(DOCKER_NAMESPACE)/$(NAME)
 GIT_REPO_NAME := docker-$(NAME)
-IMAGE_SOURCE_TYPE ?= .jessie-slim
+IMAGE_SOURCE_TYPE ?= jessie-slim
 REPO_URL := git@github.com:$(GITHUB_USER)/$(GIT_REPO_NAME).git
 
 GIT_BRANCH ?= master
@@ -29,7 +29,7 @@ _setup-versions:
 
 
 _docker-build: _setup-versions
-	docker build -t $(IMAGE_NAME):$(CURRENT_VERSION) -f Dockerfile$(IMAGE_SOURCE_TYPE) .
+	docker build -t $(IMAGE_NAME):$(CURRENT_VERSION) -f Dockerfile.$(IMAGE_SOURCE_TYPE) .
 	@$(call  git_push,Post Release Updating auto generated stuff - version: $(CURRENT_VERSION))
 
 _docker-push: _setup-versions
