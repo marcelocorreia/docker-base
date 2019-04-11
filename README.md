@@ -8,7 +8,9 @@
 - [Overview](#overview)
 - [Description](#description)
 - [Dockerfile](#dockefile)
+- [Usage](#usage)
 - [License](#license)
+- **Semver versioning**
 
 ### Overview
 Docker Base image
@@ -16,6 +18,35 @@ Docker Base image
 
 
 
+
+### Usage
+```bash
+$ docker run --rm marcelocorreia/base:alpine bash
+$ docker run --rm marcelocorreia/base:jessie-slim bash
+$ docker run --rm marcelocorreia/base:buster-slim bash
+```
+### Extending
+```Dockerfile
+FROM marcelocorreia/base:alpine
+...
+```
+```Dockerfile
+FROM marcelocorreia/base:jessie-slim
+...
+```
+```Dockerfile
+FROM marcelocorreia/base:buster-slim
+...
+```
+**Targets**
+```bash
+$ make release
+$ make build
+$ make push
+$ make all-versions
+$ make current-version
+$ make next-version
+```
 
 
 
