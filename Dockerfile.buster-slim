@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM debian:buster-slim
 
 MAINTAINER marcelo correia <marcelo@correia.io>
 
