@@ -29,8 +29,8 @@ $ docker run --rm marcelocorreia/base:buster-slim bash
 ```bash
 $ docker run --rm -v $(pwd):/opt/workspace \
     -e TZ=Australia/Sydney \
-   marcelocorreia/terraform \
-   terraform [--version] [--help] <command> [args]
+    marcelocorreia/terraform \
+    terraform [--version] [--help] <command> [args]
 ```
 ### Extending
 ```Dockerfile
