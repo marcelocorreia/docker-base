@@ -30,10 +30,7 @@ usage: |
   ```
   ## Setting timezone
   ```bash
-  $ docker run --rm -v $(pwd):/opt/workspace \
-      -e TZ=Australia/Sydney \
-      marcelocorreia/terraform \
-      terraform [--version] [--help] <command> [args]
+  $ docker run --rm -e TZ=Australia/Sydney marcelocorreia/base bash
   ```
   ### Extending
   ```Dockerfile
