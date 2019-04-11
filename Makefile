@@ -11,7 +11,7 @@ GIT_BRANCH ?= master
 GIT_REMOTE ?= origin
 RELEASE_TYPE ?= patch
 SEMVER_DOCKER ?= marcelocorreia/semver
-
+SCAFOLD := badwolf
 # Available Targets
 release: _release
 build: _docker-build
@@ -48,6 +48,9 @@ _new-repo:
 
 _initial-release: _new-repo
 	@github-release release -u marcelocorreia -r $(GIT_REPO_NAME) --tag 0.0.0 --name 0.0.0
+
+_readme:
+	$(SCAFOLD) generate --resource-type readme .
 
 define git_push
 	-git add .
