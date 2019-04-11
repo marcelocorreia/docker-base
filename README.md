@@ -27,10 +27,10 @@ $ docker run --rm marcelocorreia/base:buster-slim bash
 ```
 ## Setting timezone
 ```bash
-$> docker run --rm -v $(pwd):/opt/workspace \
-        -e TZ=Australia/Sydney \
-   		marcelocorreia/terraform \
-   		terraform [--version] [--help] <command> [args]
+$ docker run --rm -v $(pwd):/opt/workspace \
+    -e TZ=Australia/Sydney \
+   marcelocorreia/terraform \
+   terraform [--version] [--help] <command> [args]
 ```
 ### Extending
 ```Dockerfile
