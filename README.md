@@ -3,17 +3,19 @@
 
 ---
 [![shield](https://img.shields.io/docker/pulls/marcelocorreia/base.svg)](https://img.shields.io/docker/pulls/marcelocorreia/base.svg)
+[![shield](https://img.shields.io/github/languages/top/marcelocorreia/docker-base.svg)](https://img.shields.io/github/languages/top/marcelocorreia/docker-base.svg)
 ---
 ### TLDR;
 - [Overview](#overview)
 - [Description](#description)
-- [Dockerfile](#dockefile)
+- [Dockerfile](#dockerfile)
 - [Usage](#usage)
 - [License](#license)
-- **Semver versioning**
-
 ### Overview
-Docker Base image
+### Docker Base images:
+- alpine
+- jessie-slim
+- buster-slim
 
 
 
@@ -54,9 +56,8 @@ $ make next-version
 
 
 
-## Dockerfiles
 
-#### alpine 
+## Dockerfile.alpine 
 ```Dockerfile
 FROM alpine:3.9
 
@@ -70,7 +71,7 @@ RUN set -ex && \
 
 CMD ["uname","-a"]
 ```
-#### jessie-slim 
+## Dockerfile.jessie-slim 
 ```Dockerfile
 FROM debian:jessie-slim
 
@@ -81,7 +82,7 @@ RUN apt-get upgrade -y
 RUN apt-get install curl git tzdata -y
 
 ```
-#### buster-slim 
+## Dockerfile.buster-slim 
 ```Dockerfile
 FROM debian:buster-slim
 
@@ -131,8 +132,6 @@ Copyright [2015]
 
 
 [slack]: https://correia-group.slack.com/
-
-
 
 
 

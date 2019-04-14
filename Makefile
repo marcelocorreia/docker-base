@@ -4,20 +4,21 @@ GITHUB_USER := marcelocorreia
 DOCKER_NAMESPACE := marcelocorreia
 IMAGE_NAME := $(DOCKER_NAMESPACE)/$(NAME)
 GIT_REPO_NAME := docker-$(NAME)
-IMAGE_SOURCE_TYPES ?= alpine jessie-slim buster-slim
+IMAGE_SOURCE_TYPES ?= jessie-slim buster-slim alpine
 REPO_URL := git@github.com:$(GITHUB_USER)/$(GIT_REPO_NAME).git
 
 GIT_BRANCH ?= master
 GIT_REMOTE ?= origin
 RELEASE_TYPE ?= patch
 SEMVER_DOCKER ?= marcelocorreia/semver
-SCAFOLD := badwolf
+
 # Available Targets
 release: _release
 build: _docker-build
 push: _docker-push
 all-versions:
 	@git ls-remote --tags $(GIT_REMOTE)
+
 current-version: _setup-versions
 	@echo $(CURRENT_VERSION)
 next-version: _setup-versions
@@ -49,8 +50,13 @@ _new-repo:
 _initial-release: _new-repo
 	@github-release release -u marcelocorreia -r $(GIT_REPO_NAME) --tag 0.0.0 --name 0.0.0
 
+SCAFOLD := badwolf
 _readme:
 	$(SCAFOLD) generate --resource-type readme .
+	$(call  git_push,Updating docs)
+
+open-page:
+	open https://github.com/$(GITHUB_USER)/$(GIT_REPO_NAME).git
 
 define git_push
 	-git add .

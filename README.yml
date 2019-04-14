@@ -15,7 +15,10 @@ slack: https://correia-group.slack.com/
 blueprint: docker/image
 
 overview: |
-  Docker Base image
+  ### Docker Base images:
+  - alpine
+  - jessie-slim
+  - buster-slim
 
 dockerfiles:
   - Dockerfile.alpine
@@ -56,15 +59,15 @@ usage: |
   ```
 
 shields:
-  - https://img.shields.io/docker/pulls/marcelocorreia/base.svg
+  - https://img.shields.io/docker/pulls/{{.name}}.svg
+  - https://img.shields.io/github/languages/top/{{ .github_user }}/{{ .git_repo }}.svg
 
 tldr:
   - '[Overview](#overview)'
   - '[Description](#description)'
-  - '[Dockerfile](#dockefile)'
+  - '[Dockerfile](#dockerfile)'
   - '[Usage](#usage)'
   - '[License](#license)'
-  - '**Semver versioning**'
 
 licenses:
   - apache-license
