@@ -33,6 +33,7 @@ _setup-versions:
 _docker-build: _setup-versions
 	@$(foreach img,$(IMAGE_SOURCE_TYPES),docker build -t $(IMAGE_NAME):$(img) -f Dockerfile.$(img) .;)
 	@$(foreach img,$(IMAGE_SOURCE_TYPES),docker build -t $(IMAGE_NAME):$(img)-$(CURRENT_VERSION) -f Dockerfile.$(img) .;)
+	@docker build -t $(IMAGE_NAME):$(NAME) -f Dockerfile.alpine .
 
 _docker-push: _setup-versions
 	@$(foreach img,$(IMAGE_SOURCE_TYPES),docker push $(IMAGE_NAME):$(img)-$(CURRENT_VERSION);)
