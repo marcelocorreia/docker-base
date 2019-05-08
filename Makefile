@@ -14,19 +14,29 @@ SEMVER_DOCKER ?= marcelocorreia/semver
 
 # Available Targets
 docker-release: _release
+
 docker-build: _docker-build
+
 docker-push: _docker-push
 
 all-versions:
 	@git ls-remote --tags $(GIT_REMOTE)
+
 current-version: _setup-versions
 	@echo $(CURRENT_VERSION)
+
 next-version: _setup-versions
 	@echo $(NEXT_VERSION)
+
 git-push:
 	@$(call git_push,updating)
+
+targets:
+	make -npRq | egrep -i -v 'makefile|^#|=|^\t|^\.' | grep ":" | sort | uniq | awk '{print $$1}'|sed 's/://g'
+
 open-page:
 	open https://github.com/$(GITHUB_USER)/$(GIT_REPO_NAME).git
+
 # Internal targets
 _setup-versions:
 	$(eval export CURRENT_VERSION=$(shell git ls-remote --tags $(GIT_REMOTE) | grep -v latest | awk '{ print $$2}'|grep -v 'stable'| sort -r --version-sort | head -n1|sed 's/refs\/tags\///g'))
@@ -58,3 +68,4 @@ define git_push
 	-git commit -m "$1"
 	-git push
 endef
+

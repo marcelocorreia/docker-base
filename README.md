@@ -2,9 +2,10 @@
 # docker-base
 
 ---
-![https://img.shields.io/docker/pulls/docker-base.svg](https://img.shields.io/docker/pulls/docker-base.svg)
+![https://img.shields.io/docker/pulls/marcelocorreia/docker-base.svg](https://img.shields.io/docker/pulls/marcelocorreia/docker-base.svg)
 ![https://img.shields.io/github/languages/top/marcelocorreia/docker-base.svg](https://img.shields.io/github/languages/top/marcelocorreia/docker-base.svg)
 ![https://api.travis-ci.org/marcelocorreia/docker-base.svg?branch=master](https://api.travis-ci.org/marcelocorreia/docker-base.svg?branch=master)
+![https://img.shields.io/github/release/marcelocorreia/docker-base.svg?flat-square](https://img.shields.io/github/release/marcelocorreia/docker-base.svg?flat-square)
 ---
 ### TLDR;
 - [Overview](#overview)
@@ -57,6 +58,44 @@ $ make next-version
 
 
 
+
+## Dockerfile.alpine 
+```Dockerfile
+FROM alpine:3.9
+
+MAINTAINER marcelo correia <marcelo@correia.io>
+
+RUN apk update
+RUN set -ex && \
+    apk add --no-cache --update \
+        bash \
+        tzdata \
+        git
+
+CMD ["uname","-a"]
+```
+## Dockerfile.jessie-slim 
+```Dockerfile
+FROM debian:jessie-slim
+
+MAINTAINER marcelo correia <marcelo@correia.io>
+
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install curl git tzdata -y
+
+```
+## Dockerfile.buster-slim 
+```Dockerfile
+FROM debian:buster-slim
+
+MAINTAINER marcelo correia <marcelo@correia.io>
+
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install curl git tzdata -y
+
+```
 
 
 
