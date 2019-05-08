@@ -2,7 +2,7 @@
 # docker-base
 
 ---
-![https://img.shields.io/docker/pulls/marcelocorreia/docker-base.svg](https://img.shields.io/docker/pulls/marcelocorreia/docker-base.svg)
+![https://img.shields.io/docker/pulls/marcelocorreia/base.svg](https://img.shields.io/docker/pulls/marcelocorreia/base.svg)
 ![https://img.shields.io/github/languages/top/marcelocorreia/docker-base.svg](https://img.shields.io/github/languages/top/marcelocorreia/docker-base.svg)
 ![https://api.travis-ci.org/marcelocorreia/docker-base.svg?branch=master](https://api.travis-ci.org/marcelocorreia/docker-base.svg?branch=master)
 ![https://img.shields.io/github/release/marcelocorreia/docker-base.svg?flat-square](https://img.shields.io/github/release/marcelocorreia/docker-base.svg?flat-square)
