@@ -1,4 +1,4 @@
-NAME := base
+NAME := $(shell basename $(shell pwd) | sed 's/docker-//g')
 #
 GITHUB_USER := marcelocorreia
 DOCKER_NAMESPACE := marcelocorreia
@@ -13,22 +13,24 @@ RELEASE_TYPE ?= patch
 SEMVER_DOCKER ?= marcelocorreia/semver
 
 # Available Targets
-release: _release
-build: _docker-build
-push: _docker-push
+docker-release: _release
+docker-build: _docker-build
+docker-push: _docker-push
+
 all-versions:
 	@git ls-remote --tags $(GIT_REMOTE)
-
 current-version: _setup-versions
 	@echo $(CURRENT_VERSION)
 next-version: _setup-versions
 	@echo $(NEXT_VERSION)
-
+git-push:
+	@$(call git_push,updating)
+open-page:
+	open https://github.com/$(GITHUB_USER)/$(GIT_REPO_NAME).git
 # Internal targets
 _setup-versions:
 	$(eval export CURRENT_VERSION=$(shell git ls-remote --tags $(GIT_REMOTE) | grep -v latest | awk '{ print $$2}'|grep -v 'stable'| sort -r --version-sort | head -n1|sed 's/refs\/tags\///g'))
 	$(eval export NEXT_VERSION=$(shell docker run --rm --entrypoint=semver $(SEMVER_DOCKER) -c -i $(RELEASE_TYPE) $(CURRENT_VERSION)))
-
 
 _docker-build: _setup-versions
 	@$(foreach img,$(IMAGE_SOURCE_TYPES),docker build -t $(IMAGE_NAME):$(img) -f Dockerfile.$(img) .;)
@@ -50,14 +52,6 @@ _new-repo:
 
 _initial-release: _new-repo
 	@github-release release -u marcelocorreia -r $(GIT_REPO_NAME) --tag 0.0.0 --name 0.0.0
-
-SCAFOLD := badwolf
-_readme:
-	$(SCAFOLD) generate --resource-type readme .
-	$(call  git_push,Updating docs)
-
-open-page:
-	open https://github.com/$(GITHUB_USER)/$(GIT_REPO_NAME).git
 
 define git_push
 	-git add .
