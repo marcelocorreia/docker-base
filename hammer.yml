@@ -16,10 +16,11 @@ main_user:
   slack: https://correia-group.slack.com
 
 tags:
-  - terraform
-  - module
-  - aws
-  - enc
+  - base
+  - alpine
+  - debian
+  - jessie
+  - buster
 
 readme:
   overview: |

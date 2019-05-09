@@ -37,6 +37,9 @@ targets:
 open-page:
 	open https://github.com/$(GITHUB_USER)/$(GIT_REPO_NAME).git
 
+grip:
+	grip -b
+	
 # Internal targets
 _setup-versions:
 	$(eval export CURRENT_VERSION=$(shell git ls-remote --tags $(GIT_REMOTE) | grep -v latest | awk '{ print $$2}'|grep -v 'stable'| sort -r --version-sort | head -n1|sed 's/refs\/tags\///g'))
@@ -63,9 +66,10 @@ _new-repo:
 _initial-release: _new-repo
 	@github-release release -u marcelocorreia -r $(GIT_REPO_NAME) --tag 0.0.0 --name 0.0.0
 
+
+
 define git_push
 	-git add .
 	-git commit -m "$1"
 	-git push
 endef
-
